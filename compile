@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# USAGE: ./compile main.cl; ./main.fasl
+
+out=$(sbcl --noinform --eval "(compile-file \"$1\")" --eval "(quit)")
+echo "$out"
+chmod +x $(echo "$out" | grep 'wrote' | awk '{print $(NF)}')
